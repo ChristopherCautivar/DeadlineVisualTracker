@@ -4,30 +4,68 @@
   <meta charset="utf-8">
   <title>Deadline Visual Tracker</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link href="/css/styles.css" rel="stylesheet"/>
+
+  
 
   <script>
     $(document).ready(function(){
-
       //Event Listeners
     //   $("#submit").on("click",function(){
+        
+    //   })//submit
+    
+      $("#username").on("keyup",function(e){
+        if (e.keyCode === 13) {
+          $('#password').focus();
+        }
+      });
+      $("#password").on("keydown",function(e){
+        if (e.keyCode === 13) {
+          $('#submit').focus();
+        }
+      });
+      $("#submit").on("click",login);
+      
+      //functions
+      function render(){
+        $("#display").css("display","block")
+        $("#view").attr("width",$("#display").width() * .9)
+      }
+      function login(){
         $.ajax({
-
-          method: "POST",
+          //TODO: post requires additional middleware
+          method: "GET",
           url: "/test",
           dataType: "json",
           data: { 
+            "username":$("#username").val(),
+            "password":$("#password").val()
           },
           success: function(result,status) {
-              
+              alert(result.events[0]["event"]);
+          },
+          error: function(){
+            alert("ERROR");
           }
 
         });//ajax
-    //   })//submit
-      
-      
+      }
       
     })//ready
   </script>
+  <h1>Deadline Visual Tracker</h1>
+  <div>
+    Username: <input type="text" id="username"/>
+    Password: <input type="password" id="password"/>
+    <button id="submit">Submit</button>
+  </div>
+  <br>
+  <div id="display">
+    <canvas id="view" height="100" style="border:1px solid #000000;">
+    </canvas>
+  </div>
+  
 
 </head>
 <body>

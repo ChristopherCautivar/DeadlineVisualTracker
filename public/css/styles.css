@@ -1,0 +1,29 @@
+html{
+    text-align:center;
+    justify-content: center;
+}
+h1{
+    
+}
+nav{
+    padding: 5px;
+    background-color: purple;
+}
+a{
+    color: white;
+}
+footer{
+    background-color: darkblue;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+#display{
+    display:none;
+}
+
+.content {
+    display: block;
+    justify-content: center;
+    margin-left: 10%;
+    margin-right: 10%;
+}
