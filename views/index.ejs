@@ -27,23 +27,62 @@
       });
       $("#submit").on("click",login);
       
+      $("#sm").on("keyup",function(e){
+        if (e.keyCode === 13) {
+          $('#sd').focus();
+        }
+      });
+      $("#sd").on("keyup",function(e){
+        if (e.keyCode === 13) {
+          $('#sy').focus();
+        }
+      });
+      $("#sy").on("keyup",function(e){
+        if (e.keyCode === 13) {
+          $('#em').focus();
+        }
+      });
+      $("#em").on("keyup",function(e){
+        if (e.keyCode === 13) {
+          $('#ed').focus();
+        }
+      });
+      $("#ed").on("keyup",function(e){
+        if (e.keyCode === 13) {
+          $('#ey').focus();
+        }
+      });
+      $("#ey").on("keyup",function(e){
+        if (e.keyCode === 13) {
+          $('#make').click();
+        }
+      });
+      $("#make").on("click",function(){
+        alert("yeh")
+      });
+      
       //functions
       function render(){
+        $("#input").css("display","block")
         $("#display").css("display","block")
         $("#view").attr("width",$("#display").width() * .9)
+        var c = $("#view")
+        var ctx = c.getContext("2d");
+        ctx.width();
       }
       function login(){
         $.ajax({
           //TODO: post requires additional middleware
           method: "GET",
-          url: "/test",
+          url: "/testRetrieve",
           dataType: "json",
           data: { 
             "username":$("#username").val(),
             "password":$("#password").val()
           },
           success: function(result,status) {
-              alert(result.events[0]["event"]);
+              // alert(result.events[0]["event"]);
+              render();
           },
           error: function(){
             alert("ERROR");
@@ -54,6 +93,11 @@
       
     })//ready
   </script>
+  
+  
+
+</head>
+<body>
   <h1>Deadline Visual Tracker</h1>
   <div>
     Username: <input type="text" id="username"/>
@@ -63,13 +107,17 @@
   <br>
   <div id="display">
     <canvas id="view" height="100" style="border:1px solid #000000;">
-    </canvas>
+  </canvas>
   </div>
-  
-
-</head>
-<body>
-   
+  <div id="input">
+    Event Name: <input type="text" id="ename"/>
+    <br>
+    Event Start (mm dd yy): <input type="text" id="sm" maxlength="2"/> <input type="text" id="sd" maxlength="2"/> <input type="text" id="sy" maxlength="2"/>
+    <br>
+    Event End (mm dd yy): <input type="text" id="em" maxlength="2"/> <input type="text" id="ed" maxlength="2"/> <input type="text" id="ey" maxlength="2"/>
+    <br>
+    <button id="make">Make Event!</button>
+  </div>
 </body>
 </html>
 

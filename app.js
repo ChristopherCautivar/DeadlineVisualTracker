@@ -4,13 +4,12 @@ const app = express();
 //todo: sql injection?
 
 var mockDB = {
-    "chris":{
+    "asdf":{
         "asdf":[
             {
                 "event":"take out the trash",
                 "start":"110119",
-                "end":"110219",
-                "color":"red"
+                "end":"110219"
             }
         ]
     }
@@ -24,9 +23,8 @@ app.get("/",function(req,res){
     res.render("index");
 });
 
-app.get("/test",function(req,res){
+app.get("/testRetrieve",function(req,res){
     //TODO: post requires additional middleware
-    console.log(req.query.password)
     res.send({"events":mockDB[req.query.username][req.query.password]});
     
 });

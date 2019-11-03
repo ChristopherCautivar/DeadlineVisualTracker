@@ -21,6 +21,20 @@ footer{
     display:none;
 }
 
+#ename {
+    width: 10em !important;
+}
+
+#input{
+    display: none;
+}
+
+#input input{
+    width:2em;
+}
+
+
+
 .content {
     display: block;
     justify-content: center;
